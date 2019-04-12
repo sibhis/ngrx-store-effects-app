@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { StoreModule } from '@ngrx/store';
 
-import { reducers } from './store';
+import { reducers, effects } from './store';
 
 // components
 import * as fromComponents from './components';

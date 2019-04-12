@@ -41,7 +41,7 @@ export const ROUTES: Routes = [
     HttpClientModule,
     RouterModule.forChild(ROUTES),
     StoreModule.forFeature('products',reducers),
-   // EffectsModule.forFeature(effects)
+    EffectsModule.forFeature(effects)
   ],
   providers: [...fromServices.services],
   declarations: [...fromContainers.containers, ...fromComponents.components],

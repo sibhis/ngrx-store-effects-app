@@ -56,5 +56,5 @@ export function reduer(
 }
 //doubt => purpose of this section
 export const getToppingEnities = ( state: ToppingState ) => state.entities;
-export const getToppingLoaded = ( state: ToppingState ) => state.loaded;
-export const getToppingLoading = ( state: ToppingState ) => state.loading;
+export const getToppingsLoaded = ( state: ToppingState ) => state.loaded;
+export const getToppingsLoading = ( state: ToppingState ) => state.loading;

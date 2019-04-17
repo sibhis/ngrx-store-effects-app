@@ -25,6 +25,5 @@ loadToppings$ = this.actions$.ofType(toppingsActions.LOAD_TOPPINGS).pipe(
 
     })
   );
-
 }
 

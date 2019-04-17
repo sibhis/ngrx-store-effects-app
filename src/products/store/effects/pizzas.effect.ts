@@ -11,14 +11,14 @@ import * as fromServices from '../../services';
 @Injectable()
 export class PizzasEffects {
   constructor(
-    private actions$: Actions,
+    private actions$: Actions,// doubt => necessary of making this as obervable
     private pizzaService: fromServices.PizzasService
   ) {}
 
   //doubt
   @Effect()
   loadPizzas$ = this.actions$
-    .ofType(pizzaActions.LOAD_PIZZAS) // fitler actions with action type LOAD_PIZZAS
+    .ofType(pizzaActions.LOAD_PIZZAS) // filter actions with action type LOAD_PIZZAS
     .pipe( switchMap(() => {
       return this.pizzaService.getPizzas()
       .pipe(
@@ -39,7 +39,37 @@ export class PizzasEffects {
           .pipe(
             map(pizza => new pizzaActions.CreatePizzaSuccess(pizza)),
             catchError( error => of(new pizzaActions.CreatePizzaFail(error)))
-          )
+          );
       })
-    )
+    );
+
+  @Effect()
+  upatePizza$ = this.actions$
+    .ofType(pizzaActions.UPDATE_PIZZA)
+    .pipe(
+      map((action: pizzaActions.UpdatePizza) => action.payload),
+      switchMap(pizza => {
+        return this.pizzaService
+          .updatePizza(pizza)
+          .pipe(
+            map(pizza => new pizzaActions.UpdatePizzaSuccess(pizza)),
+            catchError( error => of(new pizzaActions.UpdatePizzaFail(error)))
+          );
+      })
+    );
+
+  @Effect()
+  removePizza$ = this.actions$
+    .ofType(pizzaActions.REMOVE_PIZZA)
+    .pipe(
+      map((action: pizzaActions.RemovePizza) => action.payload),
+      switchMap(pizza => {
+        return this.pizzaService
+          .removePizza(pizza)
+          .pipe(
+            map(() => new pizzaActions.RemovePizzaSuccess(pizza)),
+            catchError( error => of(new pizzaActions.RemovePizzaFail(error)))
+          );
+      })
+    );
 }

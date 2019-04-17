@@ -25,6 +25,7 @@ export function reducer(
         loading: true
       }
     }
+
     case fromPizzas.LOAD_PIZZAS_SUCCESS: {
       console.log(action.payload);
       const pizzas = action.payload;
@@ -47,6 +48,7 @@ export function reducer(
         entities
       }
     }
+
     case fromPizzas.LOAD_PIZZAS_FAIL: {
       return {
         ...state,
@@ -54,12 +56,24 @@ export function reducer(
         loaded: false
       }
     }
+
+    case fromPizzas.UPDATE_PIZZA_SUCCESS:
     case fromPizzas.CREATE_PIZZA_SUCCESS: {
       const pizza = action.payload;
       const entities = {
         ...state.entities,
         [pizza.id]: pizza
       }
+      return {
+        ...state,
+        entities
+      }
+    }
+
+    case fromPizzas.REMOVE_PIZZA_SUCCESS: {
+      const pizza = action.payload;
+      const { [pizza.id]:removed, ...entities } = state.entities;
+      console.log(removed);
       return {
         ...state,
         entities

@@ -85,4 +85,16 @@ export class PizzasEffects {
           );
       })
     );
+
+  @Effect()
+  handlePizzaSuccess$ = this.actions$
+    .ofType(
+      pizzaActions.UPDATE_PIZZA_SUCCESS,
+      pizzaActions.REMOVE_PIZZA_SUCCESS
+    )
+    .pipe( //doubt => can only be map function?
+      map( pizza => {
+        return new fromRoot.Go({ path:['products'] });
+      })
+    )
 }

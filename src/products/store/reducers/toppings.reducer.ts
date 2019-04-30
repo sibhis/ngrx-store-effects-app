@@ -11,11 +11,11 @@ export interface ToppingState {
 export const initialState: ToppingState = {
   entities: {},
   loaded: false,
-  loading: true,
+  loading: false,
   selectedToppings: [],
 }
 
-export function reduer(
+export function reducer(
   state = initialState,
   action: fromToppings.ToppingsAction
 ): ToppingState {
@@ -64,7 +64,7 @@ export function reduer(
   return state;
 }
 //doubt => purpose of this section
-export const getToppingEnities = ( state: ToppingState ) => state.entities;
+export const getToppingEntities = ( state: ToppingState ) => state.entities;
 export const getToppingsLoaded = ( state: ToppingState ) => state.loaded;
 export const getToppingsLoading = ( state: ToppingState ) => state.loading;
 export const getSelectedToppings = (state: ToppingState ) => state.selectedToppings;

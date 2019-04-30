@@ -12,7 +12,7 @@ export interface ProductsState {
 //register reducer to the store module
 export const reducers: ActionReducerMap<ProductsState> = {
   pizzas: fromPizzas.reducer,
-  toppings: fromToppings.reduer,
+  toppings: fromToppings.reducer,
 }
 
 export const getProductState = createFeatureSelector<ProductsState>('products');
